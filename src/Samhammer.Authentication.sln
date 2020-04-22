@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.Authentication.Api", "Samhammer.Authentication.Api\Samhammer.Authentication.Api.csproj", "{B13D9512-3AD2-4C82-B108-614AABBF80F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4F29607-B31C-4DF1-8D0C-EAF58478E4BF}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B13D9512-3AD2-4C82-B108-614AABBF80F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B13D9512-3AD2-4C82-B108-614AABBF80F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B13D9512-3AD2-4C82-B108-614AABBF80F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B13D9512-3AD2-4C82-B108-614AABBF80F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8176E6DB-1013-44F1-B46E-2F78410CCBAD}
+	EndGlobalSection
+EndGlobal
