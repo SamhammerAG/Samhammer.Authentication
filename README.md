@@ -34,8 +34,10 @@ If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeyclo
 ## Contribute
 
 #### How to publish a nuget package
-- set package version in Samhammer.Auth.Api.csproj
+- set package version in Samhammer.Authentication.Api.csproj
+- set package version in Samhammer.Authentication.Abstractions.csproj
 - create git tag
 - dotnet pack -c Release
-- nuget push .Samhammer.Swagger.Default\bin\Release\Samhammer.Auth.Api.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
+- nuget push .Samhammer.Authentication.Api\bin\Release\Samhammer.Authentication.Api.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
+- nuget push .Samhammer.Authentication.Abstractions\bin\Release\Samhammer.Authentication.Abstractions.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
 - (optional) nuget setapikey NUGET_API_KEY -source https://api.nuget.org/v3/index.json

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using Newtonsoft.Json;
+using Samhammer.Authentication.Abstractions;
 
 namespace Samhammer.Authentication.Api.Keycloak
 {

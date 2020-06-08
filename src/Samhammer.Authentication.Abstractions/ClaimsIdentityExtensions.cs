@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Security.Claims;
 
-namespace Samhammer.Authentication.Api
+namespace Samhammer.Authentication.Abstractions
 {
-    internal static class ClaimsIdentityExtensions
+    public static class ClaimsIdentityExtensions
     {
         public static bool TryGetClaim(this ClaimsIdentity claimsIdentity, Predicate<Claim> match, out Claim claim)
         {

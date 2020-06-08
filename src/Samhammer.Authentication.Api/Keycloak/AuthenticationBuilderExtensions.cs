@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Samhammer.Authentication.Abstractions;
 
 namespace Samhammer.Authentication.Api.Keycloak
 {

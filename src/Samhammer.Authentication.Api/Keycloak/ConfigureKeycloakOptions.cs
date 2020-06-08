@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using Samhammer.Authentication.Abstractions;
 
 namespace Samhammer.Authentication.Api.Keycloak
 {

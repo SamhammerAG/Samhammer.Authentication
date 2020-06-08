@@ -1,4 +1,4 @@
-﻿namespace Samhammer.Authentication.Api.Keycloak
+﻿namespace Samhammer.Authentication.Abstractions
 {
     public class ApiAuthOptions
     {
