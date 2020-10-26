@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
@@ -31,12 +32,17 @@ namespace Samhammer.Authentication.Api.Guest
                     return Task.FromResult(AuthenticateResult.NoResult());
                 }
 
-                if (!IsAuthorized())
+                var guestId = GetGuestId();
+
+                if (!IsAuthorized(guestId))
                 {
+                    Logger.LogInformation("Failed to validate the GuestID");
                     return Task.FromResult(AuthenticateResult.Fail("Guest authentication failed"));
                 }
 
-                var claims = CreateClaims();
+                Logger.LogInformation("Successfully validated the GuestID.");
+
+                var claims = CreateClaims(guestId);
                 var identity = new ClaimsIdentity(claims, Scheme.Name);
                 var principal = new ClaimsPrincipal(identity);
                 var ticket = new AuthenticationTicket(principal, Scheme.Name);
@@ -45,20 +51,23 @@ namespace Samhammer.Authentication.Api.Guest
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "Guest authentication error");
+                Logger.LogError(ex, "Exception occurred on authenticate with GuestID.");
                 return Task.FromResult(AuthenticateResult.Fail("Guest authentication error"));
             }
         }
 
-        private bool IsAuthorized()
+        private bool IsAuthorized(string guestId)
         {
-            var sessionId = GetGuestId();
-            return !string.IsNullOrEmpty(sessionId);
+            if (string.IsNullOrEmpty(Options.Validator))
+            {
+                return !string.IsNullOrEmpty(guestId);
+            }
+
+            return Regex.IsMatch(guestId, Options.Validator);
         }
 
-        private List<Claim> CreateClaims()
+        private List<Claim> CreateClaims(string guestId)
         {
-            var guestId = GetGuestId();
             var name = Options.Name.Replace(GuestAuthenticationDefaults.Placeholder, guestId, StringComparison.OrdinalIgnoreCase);
 
             var claims = new List<Claim>();

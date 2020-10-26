@@ -10,10 +10,12 @@ namespace Samhammer.Authentication.Api.Guest
 
         public string Role { get; set; }
 
+        public string Validator { get; set; }
+
         public GuestAuthOptions()
         {
-            // set default values
             Name = $"guest-{GuestAuthenticationDefaults.Placeholder}";
+            Validator = "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"; // uuid v4
             Enabled = true;
         }
     }
