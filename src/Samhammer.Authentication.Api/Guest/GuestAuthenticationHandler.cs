@@ -33,7 +33,7 @@ namespace Samhammer.Authentication.Api.Guest
 
                 if (!IsAuthorized())
                 {
-                    return Task.FromResult(AuthenticateResult.Fail("UserSession authentication failed"));
+                    return Task.FromResult(AuthenticateResult.Fail("Guest authentication failed"));
                 }
 
                 var claims = CreateClaims();
@@ -45,28 +45,25 @@ namespace Samhammer.Authentication.Api.Guest
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "UserSession authentication error");
-                return Task.FromResult(AuthenticateResult.Fail("UserSession authentication error"));
+                Logger.LogError(ex, "Guest authentication error");
+                return Task.FromResult(AuthenticateResult.Fail("Guest authentication error"));
             }
         }
 
         private bool IsAuthorized()
         {
-            var sessionId = GetSessionId();
+            var sessionId = GetGuestId();
             return !string.IsNullOrEmpty(sessionId);
         }
 
         private List<Claim> CreateClaims()
         {
-            var sessionId = GetSessionId();
+            var guestId = GetGuestId();
+            var name = Options.Name.Replace(GuestAuthenticationDefaults.Placeholder, guestId, StringComparison.OrdinalIgnoreCase);
+
             var claims = new List<Claim>();
-
-            claims.Add(new Claim(GuestAuthenticationDefaults.ClaimKey, sessionId));
-
-            if (!string.IsNullOrEmpty(Options.Name))
-            {
-                claims.Add(new Claim(ClaimTypes.Name, Options.Name));
-            }
+            claims.Add(new Claim(ClaimTypes.Name, name));
+            claims.Add(new Claim(GuestAuthenticationDefaults.ClaimKey, guestId));
 
             if (!string.IsNullOrEmpty(Options.Role))
             {
@@ -76,7 +73,7 @@ namespace Samhammer.Authentication.Api.Guest
             return claims;
         }
 
-        private string GetSessionId()
+        private string GetGuestId()
         {
             return Context.Request.Headers.SingleOrDefault(h => h.Key.Equals(GuestAuthenticationDefaults.HeaderKey)).Value;
         }

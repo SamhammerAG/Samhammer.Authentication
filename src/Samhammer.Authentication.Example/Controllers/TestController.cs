@@ -48,10 +48,10 @@ namespace Samhammer.Authentication.Example.Controllers
             {
                 loginName = User.Identity.Name,
                 isGuest = User.IsGuest(),
-                guestKey = User.GetGuestKey(),
+                guestID = User.GetGuestID(),
                 firstName = User.FindFirst(ClaimTypes.GivenName)?.Value,
-                roles = string.Join(", ", User.FindAll(ClaimTypes.Role).Select(c => c.Value)),
-                lastName = User.FindFirst(ClaimTypes.Surname)?.Value
+                lastName = User.FindFirst(ClaimTypes.Surname)?.Value,
+                roles = string.Join(", ", User.FindAll(ClaimTypes.Role).Select(c => c.Value))
             };
         }
     }

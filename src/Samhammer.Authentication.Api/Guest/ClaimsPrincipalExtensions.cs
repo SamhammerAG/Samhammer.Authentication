@@ -9,7 +9,7 @@ namespace Samhammer.Authentication.Api.Guest
             return string.Equals(user.Identity.AuthenticationType, GuestAuthenticationDefaults.AuthenticationScheme);
         }
 
-        public static string GetGuestKey(this ClaimsPrincipal user)
+        public static string GetGuestID(this ClaimsPrincipal user)
         {
             return user.HasClaim(c => c.Type == GuestAuthenticationDefaults.ClaimKey)
                 ? user.FindFirst(GuestAuthenticationDefaults.ClaimKey).Value
