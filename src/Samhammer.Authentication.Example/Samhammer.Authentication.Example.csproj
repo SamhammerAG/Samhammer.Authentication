@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="ConfigurationSubstitutor" Version="1.0.2" />
-    <PackageReference Include="Samhammer.Swagger.Authentication" Version="1.0.2" />
+    <PackageReference Include="Samhammer.Swagger.Authentication" Version="1.1.0" />
     <PackageReference Include="Samhammer.Swagger.Default" Version="1.0.2" />
   </ItemGroup>
 
