@@ -32,7 +32,7 @@ namespace Samhammer.Authentication.Api.Guest
                     return Task.FromResult(AuthenticateResult.NoResult());
                 }
 
-                var guestId = GetGuestId();
+                var guestId = Context.Request.Headers[GuestAuthenticationDefaults.HeaderKey];
 
                 if (!IsAuthorized(guestId))
                 {
@@ -80,11 +80,6 @@ namespace Samhammer.Authentication.Api.Guest
             }
 
             return claims;
-        }
-
-        private string GetGuestId()
-        {
-            return Context.Request.Headers.SingleOrDefault(h => h.Key.Equals(GuestAuthenticationDefaults.HeaderKey)).Value;
         }
     }
 }
