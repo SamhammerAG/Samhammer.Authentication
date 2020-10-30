@@ -25,6 +25,12 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
+api calls requires auhorization header with an JWT token from keycloak
+```curl
+POST https://myapi/action HTTP/1.1
+Auhorization: Bearer JwtTokenContent
+```
+
 If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeycloak" add the following to appsettings.json:
 ```js
   "ApiAuthOptions": {
@@ -35,6 +41,7 @@ If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeyclo
 
 ### Guest Authentication
 
+add to api
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -43,11 +50,19 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-If you pass "IConfiguration" instead of "Action\<GuestAuthOptions\>" to "AddGuest" you can can setup configuration by appsettings.json:
+api calls requires header guestid with an "Version 4 UUID"
+```curl
+POST https://myapi/action HTTP/1.1
+guestid: 1c11792b-538f-4908-992d-6570bb268e60
+```
+
+If you pass "IConfiguration" instead of "Action\<GuestAuthOptions\>" to "AddGuest" you can can override the default settings in appsettings.json:
 ```js
   "GuestAuthOptions": {
     "Enabled": true,
-    "Role": "SomeGuestRole"
+    "Name": "guest-[GuestID]",    
+    "Role": "SomeGuestRole",
+    "Validator": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
   }
 ```
 
