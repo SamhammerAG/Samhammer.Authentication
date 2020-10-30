@@ -24,10 +24,36 @@ namespace Samhammer.Authentication.Api.Keycloak
         {
             var claimsIdentity = (ClaimsIdentity)principal.Identity;
 
-            MapRoleClaim(claimsIdentity);
-            MapNameClaim(claimsIdentity);
+            if (ShouldTransform(claimsIdentity))
+            {
+                AddTransformClaim(claimsIdentity);
+                MapRoleClaim(claimsIdentity);
+                MapNameClaim(claimsIdentity);
+            }
 
             return Task.FromResult(principal);
+        }
+
+        private bool ShouldTransform(ClaimsIdentity claimsIdentity)
+        {
+            // skip transform for identities that were already transformed
+            if (claimsIdentity.HasClaim(c => c.Type == nameof(KeycloakClaimsTransformation)))
+            {
+                return false;
+            }
+
+            // only transform for identities issued by keyCloak
+            if (claimsIdentity.TryGetClaim(c => c.Type == "iss", out var issClaim))
+            {
+                return string.Equals(issClaim.Value, AuthOptions.Value.Issuer);
+            }
+
+            return false;
+        }
+
+        private void AddTransformClaim(ClaimsIdentity claimsIdentity)
+        {
+            claimsIdentity.AddClaim(new Claim(nameof(KeycloakClaimsTransformation), "true"));
         }
 
         private void MapRoleClaim(ClaimsIdentity claimsIdentity)
