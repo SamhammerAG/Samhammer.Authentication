@@ -9,6 +9,8 @@ This provides a way to secure your api with keycloak jwt bearer authentication.
 
 #### How to use:
 
+### Keycloak JWT Authentication
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -30,6 +32,50 @@ If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeyclo
     "ClientId": "<<ClientIdRepresentingYourApp>>"
   }
 ```
+
+### Guest Authentication
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(GuestAuthenticationDefaults.AuthenticationScheme)
+        .AddGuest(Configuration);
+}
+```
+
+If you pass "IConfiguration" instead of "Action\<GuestAuthOptions\>" to "AddGuest" you can can setup configuration by appsettings.json:
+```js
+  "GuestAuthOptions": {
+    "Enabled": true,
+    "Role": "SomeGuestRole"
+  }
+```
+
+### Mixed Authentication
+You can also setup both authentication types. In the example below jwt keycloak will be the default.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddJwtAuthentication()
+        .AddKeycloak(Configuration)
+        .AddGuest(Configuration);
+}
+```
+
+You can setup your supported authentication types on each controller action per attribute.
+
+```csharp
+[HttpPost]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + ", " + GuestAuthenticationDefaults.AuthenticationScheme)]
+public async Task<IActionResult> ActionForBoth()
+...
+
+[HttpPost]
+[Authorize(GuestAuthenticationDefaults.AuthenticationScheme)]
+public async Task<IActionResult> ActionForGuests()
+```
+
 
 ## Contribute
 
