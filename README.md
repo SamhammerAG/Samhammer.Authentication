@@ -11,6 +11,7 @@ This provides a way to secure your api with keycloak jwt bearer authentication.
 
 ### Keycloak JWT Authentication
 
+Add it to your api.
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -25,7 +26,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-api calls requires auhorization header with an JWT token from keycloak
+Api calls requires auhorization header with an JWT token from keycloak.
 ```curl
 POST https://myapi/action HTTP/1.1
 Auhorization: Bearer JwtTokenContent
@@ -41,7 +42,7 @@ If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeyclo
 
 ### Guest Authentication
 
-add to api
+Add it to your api.
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -50,7 +51,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-api calls requires header guestid with an "Version 4 UUID"
+Api calls requires header guestid with an "Version 4 UUID".
 ```curl
 POST https://myapi/action HTTP/1.1
 guestid: 1c11792b-538f-4908-992d-6570bb268e60
@@ -84,11 +85,12 @@ You can setup your supported authentication types on each controller action per 
 [HttpPost]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme + ", " + GuestAuthenticationDefaults.AuthenticationScheme)]
 public async Task<IActionResult> ActionForBoth()
-...
+{}
 
 [HttpPost]
 [Authorize(GuestAuthenticationDefaults.AuthenticationScheme)]
 public async Task<IActionResult> ActionForGuests()
+{}
 ```
 
 
@@ -99,6 +101,6 @@ public async Task<IActionResult> ActionForGuests()
 - set package version in Samhammer.Authentication.Abstractions.csproj
 - create git tag
 - dotnet pack -c Release
-- nuget push .Samhammer.Authentication.Api\bin\Release\Samhammer.Authentication.Api.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
-- nuget push .Samhammer.Authentication.Abstractions\bin\Release\Samhammer.Authentication.Abstractions.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
+- nuget push Samhammer.Authentication.Api\bin\Release\Samhammer.Authentication.Api.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
+- nuget push Samhammer.Authentication.Abstractions\bin\Release\Samhammer.Authentication.Abstractions.*.nupkg NUGET_API_KEY -src https://api.nuget.org/v3/index.json
 - (optional) nuget setapikey NUGET_API_KEY -source https://api.nuget.org/v3/index.json
