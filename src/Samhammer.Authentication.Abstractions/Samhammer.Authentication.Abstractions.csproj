@@ -8,7 +8,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Company>Samhammer AG</Company>
     <Authors>Samhammer AG</Authors>
-    <Version>1.1.0</Version>
+    <Description>Keycloak authentication for .NET Core projects</Description>
   </PropertyGroup>
 
   <ItemGroup>
