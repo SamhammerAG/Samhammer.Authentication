@@ -8,6 +8,7 @@
     <Company>Samhammer AG</Company>
     <Authors>Samhammer AG</Authors>
     <Description>Keycloak authentication for .NET Core projects</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
@@ -24,5 +25,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Samhammer.Authentication.Abstractions\Samhammer.Authentication.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>
