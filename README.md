@@ -97,4 +97,4 @@ public async Task<IActionResult> ActionForGuests()
 ## Contribute
 
 #### How to publish a nuget package
-- Create a tag and lat the github action do the publishing for you
+- Create a tag and let the github action do the publishing for you
