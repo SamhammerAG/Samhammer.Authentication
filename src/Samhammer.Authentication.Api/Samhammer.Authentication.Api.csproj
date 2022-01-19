@@ -2,13 +2,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CodeAnalysisRuleSet>..\stylecop.ruleset</CodeAnalysisRuleSet>
+    <Authors>Samhammer AG</Authors>    
+    <Company>Samhammer AG</Company>  
     <PackageProjectUrl>https://github.com/SamhammerAG/Samhammer.Authentication</PackageProjectUrl>
     <RepositoryUrl>https://github.com/SamhammerAG/Samhammer.Authentication</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Company>Samhammer AG</Company>
-    <Authors>Samhammer AG</Authors>
-    <Description>Keycloak authentication for .NET Core projects</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Keycloak authentication for .NET Core projects</Description>    
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
