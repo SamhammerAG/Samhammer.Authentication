@@ -7,7 +7,6 @@ using Samhammer.Authentication.Api.Guest;
 using Samhammer.Authentication.Api.Jwt;
 using Samhammer.Authentication.Api.Keycloak;
 using Samhammer.Swagger.Authentication;
-using Samhammer.Swagger.Default;
 
 namespace Samhammer.Authentication.Example
 {
@@ -30,7 +29,6 @@ namespace Samhammer.Authentication.Example
                 .AddGuest(Configuration);
 
             services.AddSwaggerGen();
-            services.AddSwaggerDefaultApi();
             services.AddSwaggerAuthentication(Configuration);
             services.AddSwaggerGuest(Configuration);
         }

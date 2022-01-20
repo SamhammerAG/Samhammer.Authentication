@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.Authentication.Api", "Samhammer.Authentication.Api\Samhammer.Authentication.Api.csproj", "{B13D9512-3AD2-4C82-B108-614AABBF80F2}"
 EndProject
@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.Authentication.Abstractions", "Samhammer.Authentication.Abstractions\Samhammer.Authentication.Abstractions.csproj", "{33655944-33B4-4033-A4B9-3017D080CE18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samhammer.Authentication.Example", "Samhammer.Authentication.Example\Samhammer.Authentication.Example.csproj", "{D45A627C-EE76-4719-B9F6-E591F9FF18BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.Authentication.Example", "Samhammer.Authentication.Example\Samhammer.Authentication.Example.csproj", "{D45A627C-EE76-4719-B9F6-E591F9FF18BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

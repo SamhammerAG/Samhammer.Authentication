@@ -6,7 +6,7 @@ using Samhammer.Authentication.Abstractions;
 
 namespace Samhammer.Authentication.Api.Keycloak
 {
-    internal class TokenRoleResolver
+    internal static class TokenRoleResolver
     {
         private static readonly Predicate<Claim> ResourceAccessMatcher = claim => claim.Type == "resource_access";
         private static readonly string RolesKeyName = "roles";
