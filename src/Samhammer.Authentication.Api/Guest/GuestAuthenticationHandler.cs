@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
@@ -36,11 +35,11 @@ namespace Samhammer.Authentication.Api.Guest
 
                 if (!IsAuthorized(guestId))
                 {
-                    Logger.LogInformation("Failed to validate the GuestID");
+                    Logger.LogWarning("Failed to validate the GuestID");
                     return Task.FromResult(AuthenticateResult.Fail("Guest authentication failed"));
                 }
 
-                Logger.LogInformation("Successfully validated the GuestID.");
+                Logger.LogDebug("Successfully validated the GuestID.");
 
                 var claims = CreateClaims(guestId);
                 var identity = new ClaimsIdentity(claims, Scheme.Name);
