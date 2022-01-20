@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="ConfigurationSubstitutor" Version="1.4.1" />
-    <PackageReference Include="Samhammer.Swagger.Authentication" Version="1.1.0" />
-    <PackageReference Include="Samhammer.Swagger.Default" Version="1.0.2" />
+    <PackageReference Include="Samhammer.Swagger.Authentication" Version="6.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
