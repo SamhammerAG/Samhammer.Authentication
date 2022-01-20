@@ -1,5 +1,3 @@
-﻿[![Build Status](https://travis-ci.com/SamhammerAG/Samhammer.Authentication.svg?branch=master)](https://travis-ci.com/SamhammerAG/Samhammer.Authentication)
-
 ## Samhammer.Authentication.Api
 
 This provides a way to secure your api with keycloak jwt bearer authentication.
