@@ -39,7 +39,6 @@ namespace Samhammer.Authentication.Example.Controllers
             return $"Welcome {User.Identity.Name}!";
         }
 
-
         [Authorize(AuthenticationSchemes = GuestAuthenticationDefaults.AuthenticationScheme + ", " + JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("userInfo")]
         public ActionResult<object> GetUserInfo()
