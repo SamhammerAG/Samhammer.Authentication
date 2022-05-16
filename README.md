@@ -34,9 +34,11 @@ If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeyclo
 ```js
   "ApiAuthOptions": {
     "Issuer": "<<KeycloakTokenIssuerUrl>>",
-    "ClientId": "<<ClientIdRepresentingYourApp>>"
+    "ClientId": "<<ClientIdRepresentingYourApp>>",
+    "NameClaim": "<<NameOfClaimWhichShouldBeSetToNameClaim>>"
   }
 ```
+NameClaim is optional and default value is "preferred_username"
 
 ### Guest Authentication
 

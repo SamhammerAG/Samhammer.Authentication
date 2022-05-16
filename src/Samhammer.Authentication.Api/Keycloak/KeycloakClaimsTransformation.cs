@@ -1,4 +1,5 @@
-﻿using System.Security.Authentication;
+﻿using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -66,20 +67,17 @@ namespace Samhammer.Authentication.Api.Keycloak
             }
         }
 
-        private void MapNameClaim(ClaimsIdentity claimsIdentity)
+        public void MapNameClaim(ClaimsIdentity claimsIdentity)
         {
-            if (claimsIdentity.HasClaim(c => c.Type == ClaimTypes.Name))
+            if (claimsIdentity.TryGetClaim(c => c.Type == AuthOptions.Value.NameClaim, out var claimToSet))
             {
+                var nameClaim = claimsIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+                claimsIdentity.TryRemoveClaim(nameClaim);
+                claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, claimToSet.Value));
                 return;
             }
 
-            if (claimsIdentity.TryGetClaim(c => c.Type == "preferred_username", out var claim))
-            {
-                claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, claim.Value));
-                return;
-            }
-
-            throw new AuthenticationException($"Claim {ClaimTypes.Name} is missing.");
+            throw new AuthenticationException($"Claim {AuthOptions.Value.NameClaim} is missing.");
         }
     }
 }

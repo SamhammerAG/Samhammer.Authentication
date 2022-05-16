@@ -1,30 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <CodeAnalysisRuleSet>..\stylecop.ruleset</CodeAnalysisRuleSet>
-    <UserSecretsId>3f13474d-7a41-4212-8660-2ebf263a6c71</UserSecretsId>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="ConfigurationSubstitutor" Version="1.4.1" />
-    <PackageReference Include="Samhammer.Swagger.Authentication" Version="6.0.0" />
+    <PackageReference Include="FluentAssertions" Version="6.6.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.376">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
-
   <ItemGroup>
+    <ProjectReference Include="..\Samhammer.Authentication.Abstractions\Samhammer.Authentication.Abstractions.csproj" />
     <ProjectReference Include="..\Samhammer.Authentication.Api\Samhammer.Authentication.Api.csproj" />
   </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
-
-
 </Project>
