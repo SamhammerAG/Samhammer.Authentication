@@ -39,7 +39,6 @@ namespace Samhammer.Authentication.Example.Controllers
             return $"Welcome {User.Identity.Name}!";
         }
 
-
         [Authorize(AuthenticationSchemes = GuestAuthenticationDefaults.AuthenticationScheme + ", " + JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("userInfo")]
         public ActionResult<object> GetUserInfo()
@@ -51,7 +50,7 @@ namespace Samhammer.Authentication.Example.Controllers
                 guestID = User.GetGuestID(),
                 firstName = User.FindFirst(ClaimTypes.GivenName)?.Value,
                 lastName = User.FindFirst(ClaimTypes.Surname)?.Value,
-                roles = string.Join(", ", User.FindAll(ClaimTypes.Role).Select(c => c.Value))
+                roles = string.Join(", ", User.FindAll(ClaimTypes.Role).Select(c => c.Value)),
             };
         }
     }

@@ -5,5 +5,7 @@
         public string Issuer { get; set; }
 
         public string ClientId { get; set; }
+
+        public string NameClaim { get; set; } = "preferred_username";
     }
 }
