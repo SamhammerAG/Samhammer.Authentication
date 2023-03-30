@@ -1,4 +1,4 @@
-## Samhammer.Authentication.Api
+﻿## Samhammer.Authentication.Api
 
 This provides a way to secure your api with keycloak jwt bearer authentication.
 
@@ -93,6 +93,24 @@ public async Task<IActionResult> ActionForGuests()
 {}
 ```
 
+# Samhammer.Authentication.Client
+
+The library provides extension methods for authentication client
+
+Currently, we have the AccessTokenManagementExtensions class which provides an extension method for ClientAccessTokenManagementOptions to add a client with options monitor support.
+
+## How to use in Program.cs
+
+```csharp
+builder.Services.AddAccessTokenManagement((sp, options) =>
+    {
+        options.Client.AddWithOptionsMonitor<ApiAuthOptions>(clientName, sp, authOptions => new ClientCredentialsTokenRequest
+        {
+            Address = authOptions.AccessTokenUrl,
+            ClientId = authOptions.ClientId,
+            ClientSecret = authOptions.ClientSecret
+        });
+    });
 
 ## Contribute
 
