@@ -111,6 +111,7 @@ builder.Services.AddAccessTokenManagement((sp, options) =>
             ClientSecret = authOptions.ClientSecret
         });
     });
+```    
 
 ## Contribute
 
