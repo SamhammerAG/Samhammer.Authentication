@@ -15,7 +15,7 @@
     <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IdentityModel.AspNetCore" Version="4.3.0" />
+    <PackageReference Include="Duende.AccessTokenManagement" Version="1.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.376">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
