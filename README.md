@@ -108,6 +108,7 @@ Currently, we have the ClientCredentialsConfigureExtensions class which provides
         client.ClientId = authOptions.ClientId;
         client.ClientSecret = authOptions.ClientSecret;
     });
+```    
 
 ## Contribute
 
