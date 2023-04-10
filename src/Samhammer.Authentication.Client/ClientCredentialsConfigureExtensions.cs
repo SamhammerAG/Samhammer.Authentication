@@ -13,7 +13,6 @@ public static class ClientCredentialsConfigureExtensions
         Action<ClientCredentialsClient, TOptions> configureOptions)
         where TOptions : class
     {
-
         services.AddSingleton<IConfigureOptions<ClientCredentialsClient>>(provider =>
             new ClientCredentialsClientConfigureOptions<TOptions>(clientName, provider, configureOptions));
     }
