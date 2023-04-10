@@ -102,7 +102,7 @@ Currently, we have the ClientCredentialsConfigureExtensions class which provides
 ## How to use in Program.cs
 
 ```csharp
-    builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("name", (client, authOptions) =>
+    builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultName", (client, authOptions) =>
     {
         client.TokenEndpoint = authOptions.AccessTokenUrl;
         client.ClientId = authOptions.ClientId;
