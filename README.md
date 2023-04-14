@@ -104,6 +104,7 @@ Currently, we have the ClientCredentialsConfigureExtensions class which provides
 ## How to use in Program.cs
 
 ```csharp
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddClientCredentialsTokenManagement();
 
 builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultAuth", (client, authOptions) =>
