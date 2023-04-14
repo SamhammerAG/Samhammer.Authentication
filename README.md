@@ -95,19 +95,27 @@ public async Task<IActionResult> ActionForGuests()
 
 # Samhammer.Authentication.Client
 
-The library provides extension methods for authentication client. This library is using Duende.AccessTokenManagement under the hood
+The library provides extension methods for authentication client. This library is using Duende.AccessTokenManagement under the hood.
 
-Currently, we have the ClientCredentialsConfigureExtensions class which provides an extension method for ClientCredentialsClient to add a client with options monitor support.
+See https://github.com/DuendeSoftware/Duende.AccessTokenManagement/wiki/Customizing-Client-Credentials-Token-Management
+
+Currently, we have the ClientCredentialsConfigureExtensions class which provides an extension method for ClientCredentialsClient to add a client with options monitor support. Ensure to call extension method AddClientCredentialsTokenManagement of Duende before!
 
 ## How to use in Program.cs
 
 ```csharp
-    builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultName", (client, authOptions) =>
+    builder.Services.AddClientCredentialsTokenManagement();
+    
+    builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultAuth", (client, authOptions) =>
     {
         client.TokenEndpoint = authOptions.AccessTokenUrl;
         client.ClientId = authOptions.ClientId;
         client.ClientSecret = authOptions.ClientSecret;
     });
+    
+    builder.Services
+        .AddHttpClient<TInterface, TService>())
+        .AddClientCredentialsTokenHandler("defaultAuth");
 ```    
 
 ## Contribute
