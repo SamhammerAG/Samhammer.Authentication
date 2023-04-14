@@ -32,11 +32,11 @@ Auhorization: Bearer JwtTokenContent
 
 If you pass "IConfiguration" instead of "Action\<ApiAuthOptions\>" to "AddKeycloak" add the following to appsettings.json:
 ```js
-  "ApiAuthOptions": {
+"ApiAuthOptions": {
     "Issuer": "<<KeycloakTokenIssuerUrl>>",
     "ClientId": "<<ClientIdRepresentingYourApp>>",
     "NameClaim": "<<NameOfClaimWhichShouldBeSetToNameClaim>>"
-  }
+}
 ```
 NameClaim is optional and default value is "preferred_username"
 
@@ -59,12 +59,12 @@ guestid: 1c11792b-538f-4908-992d-6570bb268e60
 
 If you pass "IConfiguration" instead of "Action\<GuestAuthOptions\>" to "AddGuest" you can can override the default settings in appsettings.json:
 ```js
-  "GuestAuthOptions": {
+"GuestAuthOptions": {
     "Enabled": true,
     "Name": "guest-[GuestID]",    
     "Role": "SomeGuestRole",
     "Validator": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
-  }
+}
 ```
 
 ### Mixed Authentication
@@ -104,18 +104,18 @@ Currently, we have the ClientCredentialsConfigureExtensions class which provides
 ## How to use in Program.cs
 
 ```csharp
-    builder.Services.AddClientCredentialsTokenManagement();
-    
-    builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultAuth", (client, authOptions) =>
-    {
-        client.TokenEndpoint = authOptions.AccessTokenUrl;
-        client.ClientId = authOptions.ClientId;
-        client.ClientSecret = authOptions.ClientSecret;
-    });
-    
-    builder.Services
-        .AddHttpClient<TInterface, TService>())
-        .AddClientCredentialsTokenHandler("defaultAuth");
+builder.Services.AddClientCredentialsTokenManagement();
+
+builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultAuth", (client, authOptions) =>
+{
+    client.TokenEndpoint = authOptions.AccessTokenUrl;
+    client.ClientId = authOptions.ClientId;
+    client.ClientSecret = authOptions.ClientSecret;
+});
+
+builder.Services
+    .AddHttpClient<TInterface, TService>())
+    .AddClientCredentialsTokenHandler("defaultAuth");
 ```    
 
 ## Contribute
