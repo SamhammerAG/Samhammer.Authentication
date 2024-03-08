@@ -12,8 +12,8 @@ namespace Samhammer.Authentication.Api.Guest
 {
     public class GuestAuthenticationHandler : AuthenticationHandler<GuestAuthOptions>
     {
-        public GuestAuthenticationHandler(IOptionsMonitor<GuestAuthOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
-            : base(options, logger, encoder, clock)
+        public GuestAuthenticationHandler(IOptionsMonitor<GuestAuthOptions> options, ILoggerFactory logger, UrlEncoder encoder)
+            : base(options, logger, encoder)
         {
         }
 
@@ -39,7 +39,7 @@ namespace Samhammer.Authentication.Api.Guest
                     return Task.FromResult(AuthenticateResult.Fail("Guest authentication failed"));
                 }
 
-                Logger.LogDebug("Successfully validated the GuestID.");
+                Logger.LogDebug("Successfully validated the GuestID");
 
                 var claims = CreateClaims(guestId);
                 var identity = new ClaimsIdentity(claims, Scheme.Name);
@@ -50,7 +50,7 @@ namespace Samhammer.Authentication.Api.Guest
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "Exception occurred on authenticate with GuestID.");
+                Logger.LogError(ex, "Exception occurred on authenticate with GuestID");
                 return Task.FromResult(AuthenticateResult.Fail("Guest authentication error"));
             }
         }
