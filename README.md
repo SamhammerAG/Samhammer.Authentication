@@ -97,26 +97,25 @@ public async Task<IActionResult> ActionForGuests()
 
 The library provides extension methods for authentication client. This library is using Duende.AccessTokenManagement under the hood.
 
-See https://github.com/DuendeSoftware/Duende.AccessTokenManagement/wiki/Customizing-Client-Credentials-Token-Management
+See [https://github.com/DuendeSoftware/Duende.AccessTokenManagement/wiki/Customizing-Client-Credentials-Token-Management](https://docs.duendesoftware.com/accesstokenmanagement/workers/#adding-duendeaccesstokenmanagement)
 
 Currently, we have the ClientCredentialsConfigureExtensions class which provides an extension method for ClientCredentialsClient to add a client with options monitor support. Ensure to call extension method AddClientCredentialsTokenManagement of Duende before!
 
 ## How to use in Program.cs
 
 ```csharp
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddClientCredentialsTokenManagement();
+builder.Services.AddClientCredentialsTokenManagement(); // uses HybridCache
 
 builder.Services.AddClientCredentialsOptions<ApiAuthOptions>("defaultAuth", (client, authOptions) =>
 {
-    client.TokenEndpoint = authOptions.AccessTokenUrl;
-    client.ClientId = authOptions.ClientId;
-    client.ClientSecret = authOptions.ClientSecret;
+    client.TokenEndpoint = new Uri(authOptions.AccessTokenUrl);
+    client.ClientId = ClientId.Parse(authOptions.ClientId);
+    client.ClientSecret = ClientSecret.Parse(authOptions.ClientSecret);
 });
 
 builder.Services
     .AddHttpClient<TInterface, TService>())
-    .AddClientCredentialsTokenHandler("defaultAuth");
+    .AddClientCredentialsTokenHandler(ClientCredentialsClientName.Parse("defaultAuth"));
 ```    
 
 ## Contribute
